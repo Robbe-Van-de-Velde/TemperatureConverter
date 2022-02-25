@@ -6,9 +6,11 @@
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <StackPanel>
+    <StackPanel HorizontalAlignment="Center" Width="6204" Margin="0,10,0,-132">
+        <TextBlock Text="Celsius" Background="#AAA"/>
         <TextBox x:Name="celsiusBox"/>
         <Button Content="Convert to Celsius" Click="ConvertToCelsius"/>
+        <TextBlock Text="Farenheit" Background="#AAA"/>
         <TextBox x:Name="farenheitBox"/>
         <Button Content="Convert to Farenheit" Click="ConvertToFarenheit"/>
     </StackPanel>
