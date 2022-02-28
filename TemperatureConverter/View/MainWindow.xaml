@@ -7,16 +7,25 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Window.Resources>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" x:Key="brush">
-            <GradientStop Color="Gray" Offset="0" />
-            <GradientStop Color="White" Offset="1" />
-        </LinearGradientBrush>
+        <Style x:Key="labelStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="Gray" Offset="0" />
+                        <GradientStop Color="White" Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="2"/>
+        </Style>
     </Window.Resources>
     <StackPanel HorizontalAlignment="Center" Width="6204" Margin="0,10,0,-132">
-        <TextBlock Text="Celsius" FontWeight="Bold" FontSize="16" Padding="2" Background="{StaticResource brush}"/>
+        <TextBlock Text="Celsius" Style="{StaticResource labelStyle}"/>
         <TextBox x:Name="celsiusBox" FontSize="16" TextAlignment="Center"/>
         <Button Content="Convert to Celsius" Click="ConvertToCelsius"/>
-        <TextBlock Text="Fahrenheit" FontWeight="Bold" FontSize="16" Padding="2" Background="{StaticResource brush}"/>
+        <TextBlock Text="Fahrenheit" Style ="{StaticResource labelStyle}"/>
         <TextBox x:Name="farenheitBox" FontSize="16" TextAlignment="Center"/>
         <Button Content="Convert to Farenheit" Click="ConvertToFarenheit"/>
     </StackPanel>
