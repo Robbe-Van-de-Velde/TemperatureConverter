@@ -29,9 +29,7 @@ namespace View
         private void SliderValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             double kelvin = slider.Value;
-
             var celsius = kelvin - 273.15;
-            celsiusBox.Text = $"{celsius}";
             var farenheit = (celsius * 1.8) + 32;
             farenheitBox.Text = $"{farenheit}";
         }
