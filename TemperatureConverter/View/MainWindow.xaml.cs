@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Globalization;
 
 namespace View
 {
@@ -33,6 +34,24 @@ namespace View
             celsiusBox.Text = $"{celsius}";
             var farenheit = (celsius * 1.8) + 32;
             farenheitBox.Text = $"{farenheit}";
+        }
+    }
+    public class CelsiusConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var kelvin = (double)value;
+            var celsius = kelvin - 273.15;
+
+            return celsius.ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var celsius = double.Parse((string)value);
+            var kelvin = celsius + 273.15;
+
+            return kelvin;
         }
     }
 }
