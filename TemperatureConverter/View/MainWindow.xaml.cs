@@ -38,5 +38,32 @@ namespace View
             var farenheit = (celsius * 1.8) + 32;
             farenheitBox.Text = $"{farenheit}";
         }
+
+        private void ConvertCelsius(object sender, RoutedEventArgs e)
+        {
+            var celsius = double.Parse(celsiusBox.Text);
+            var farenheit = (celsius * 1.8) + 32;
+            farenheitBox.Text = $"{farenheit}";
+            var kelvin = celsius + 273.15;
+            kelvinBox.Text = $"{kelvin}";
+        }
+
+        private void ConvertFarenheit(object sender, RoutedEventArgs e)
+        {
+            var farenheit = double.Parse(farenheitBox.Text);
+            var celsius = (farenheit - 32) / 1.8;
+            celsiusBox.Text = $"{celsius}";
+            var kelvin = celsius + 273.15;
+            kelvinBox.Text = $"{kelvin}";
+        }
+
+        private void ConvertKelvin(object sender, RoutedEventArgs e)
+        {
+            var kelvin = double.Parse(kelvinBox.Text);
+            var celsius = kelvin - 273.15;
+            celsiusBox.Text = $"{celsius}";
+            var farenheit = (celsius * 1.8) + 32;
+            farenheitBox.Text = $"{farenheit}";
+        }
     }
 }
