@@ -11,8 +11,10 @@
             <Setter Property="Background">
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                        <GradientStop Color="Gray" Offset="0" />
-                        <GradientStop Color="White" Offset="1" />
+                        <GradientStop Color="Red" Offset="0" />
+                        <GradientStop Color="Orange" Offset="0.3"/>
+                        <GradientStop Color="Yellow" Offset="0.6"/>
+                        <GradientStop Color="Wheat" Offset="1"/>
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
@@ -28,7 +30,7 @@
             <Setter Property="FontSize" Value="16"/>
         </Style>
     </Window.Resources>
-    <StackPanel HorizontalAlignment="Center" Width="6204" Margin="0,10,0,-132">
+    <StackPanel>
         <TextBlock Text="Celsius" Style="{StaticResource labelStyle}"/>
         <TextBox x:Name="celsiusBox" Style="{StaticResource textBoxStyle}"/>
         <Button Content="Convert to Celsius" Click="ConvertToCelsius" Style="{StaticResource buttonStyle}"/>
