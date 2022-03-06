@@ -34,7 +34,22 @@ namespace View
             farenheitBox.Text = $"{farenheit}";
         }
     }
-    public class CelsiusConverter : IValueConverter
+
+    public class TemperatureConverter : IValueConverter
+    {
+        public ITemperatureScale TemperatureScale { get; set; }
+   
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return TemperatureScale.ConvertFromKelvin((double)value);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return TemperatureScale.ConvertFromKelvin((double)value);
+        }
+    }
+    /*public class CelsiusConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -70,5 +85,5 @@ namespace View
 
             return kelvin;
         }
-    }
+    }*/
 }

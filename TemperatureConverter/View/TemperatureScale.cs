@@ -50,7 +50,7 @@ namespace View
 
         public double ConvertFromKelvin(double temperature)
         {
-            return Math.Round(((temperature - 273.15) * 1.8) + 32, 2)
+            return Math.Round(((temperature - 273.15) * 1.8) + 32, 2);
         }
 
         public double ConvertToKelvin(double temperature)
