@@ -44,6 +44,8 @@ namespace View
         public MainWindow()
         {
             InitializeComponent();
+
+            this.DataContext = this;
         }
 
         private void SliderValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -62,13 +64,13 @@ namespace View
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var temperature = (double) value;
-            Debug.WriteLine($"Converting {value} for {TemperatureScale.Name}");
+            /*Debug.WriteLine($"Converting {value} for {TemperatureScale.Name}");*/
             return TemperatureScale.ConvertFromKelvin((double)value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Debug.WriteLine($"Unconverting {value} for {TemperatureScale.Name}");
+/*            Debug.WriteLine($"Unconverting {value} for {TemperatureScale.Name}");*/
             return TemperatureScale.ConvertToKelvin(double.Parse((string)value));
         }
     }
