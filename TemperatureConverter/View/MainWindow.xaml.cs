@@ -21,31 +21,13 @@ namespace View
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private double temperatureInKelvin;
-
-        public double TemperatureInKelvin
-        {
-            get
-            {
-                return temperatureInKelvin;
-            }
-            set
-            {
-                temperatureInKelvin = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TemperatureInKelvin)));
-
-            }
-        }
-
         public MainWindow()
         {
             InitializeComponent();
 
-            this.DataContext = this;
+            this.DataContext = new ConverterViewModel();
         }
 
         private void SliderValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -63,14 +45,14 @@ namespace View
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var temperature = (double) value;
+            var temperature = (double)value;
             /*Debug.WriteLine($"Converting {value} for {TemperatureScale.Name}");*/
             return TemperatureScale.ConvertFromKelvin((double)value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-/*            Debug.WriteLine($"Unconverting {value} for {TemperatureScale.Name}");*/
+            /*            Debug.WriteLine($"Unconverting {value} for {TemperatureScale.Name}");*/
             return TemperatureScale.ConvertToKelvin(double.Parse((string)value));
         }
     }

@@ -27,6 +27,19 @@
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="TextAlignment" Value="Center"/>
         </Style>
+        <Style x:Key="sliderStyle" TargetType="Slider">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="DarkBlue" Offset="0" />
+                        <GradientStop Color="LightBlue" Offset="0.3" />
+                        <GradientStop Color="Yellow" Offset="0.4"/>
+                        <GradientStop Color="Orange" Offset="0.7"/>
+                        <GradientStop Color="Red" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
         <local:TemperatureConverter x:Key="celsiusConverter">
             <local:TemperatureConverter.TemperatureScale>
@@ -64,6 +77,6 @@
             <TextBlock Grid.Row="0" Text="Kelvin" Style ="{StaticResource labelStyle}"/>
             <TextBox Grid.Row="1" Text="{Binding Path=TemperatureInKelvin, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource textBoxStyle}"/>
         </Grid>
-        <Slider x:Name="slider" Minimum="0" Maximum="1000" Value="{Binding Path=TemperatureInKelvin}"/>
+        <Slider x:Name="slider" Minimum="0" Maximum="1000" Value="{Binding Path=TemperatureInKelvin}" Style="{StaticResource sliderStyle}"/>
     </StackPanel>
 </Window>
