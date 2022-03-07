@@ -13,14 +13,34 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Globalization;
+using System.Diagnostics;
+using System.ComponentModel;
 
 namespace View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private double temperatureInKelvin;
+
+        public double TemperatureInKelvin
+        {
+            get
+            {
+                return temperatureInKelvin;
+            }
+            set
+            {
+                temperatureInKelvin = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TemperatureInKelvin)));
+
+            }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,23 +50,26 @@ namespace View
         {
             double kelvin = slider.Value;
             var celsius = kelvin - 273.15;
-            var farenheit = (celsius * 1.8) + 32;
-            farenheitBox.Text = $"{farenheit}";
+            var fahrenheit = (celsius * 1.8) + 32;
+            farenheitBox.Text = $"{fahrenheit}";
         }
     }
 
     public class TemperatureConverter : IValueConverter
     {
         public ITemperatureScale TemperatureScale { get; set; }
-   
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            var temperature = (double) value;
+            Debug.WriteLine($"Converting {value} for {TemperatureScale.Name}");
             return TemperatureScale.ConvertFromKelvin((double)value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return TemperatureScale.ConvertFromKelvin(double.Parse((string)value));
+            Debug.WriteLine($"Unconverting {value} for {TemperatureScale.Name}");
+            return TemperatureScale.ConvertToKelvin(double.Parse((string)value));
         }
     }
     /*public class CelsiusConverter : IValueConverter
