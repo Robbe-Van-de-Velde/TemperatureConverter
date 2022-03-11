@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Globalization;
 using System.Diagnostics;
 using System.ComponentModel;
+using ViewModel;
 
 namespace View
 {
