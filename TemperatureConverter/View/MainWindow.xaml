@@ -42,30 +42,20 @@
         </Style>
     </Window.Resources>
     <StackPanel>
-        <Grid DataContext="{Binding Celsius}">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="{Binding Name}" Style="{StaticResource labelStyle}" />
-            <TextBox Grid.Row="1"  x:Name="celsiusBox" Style="{StaticResource textBoxStyle}" Text="{Binding Path=Temperature}"/>
-        </Grid>
-        <Grid DataContext="{Binding Fahrenheit}">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="{Binding Name}" Style ="{StaticResource labelStyle}"/>
-            <TextBox Grid.Row="1" x:Name="farenheitBox" Style="{StaticResource textBoxStyle}" Text="{Binding Path=Temperature}"/>
-        </Grid>
-        <Grid DataContext="{Binding Kelvin}">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="{Binding Name}" Style ="{StaticResource labelStyle}"/>
-            <TextBox Grid.Row="1" Text="{Binding Path=Temperature}" Style="{StaticResource textBoxStyle}"/>
-        </Grid>
+        <ItemsControl ItemsSource="{Binding Scales}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="{Binding Name}" Style="{StaticResource labelStyle}" />
+                        <TextBox Grid.Row="1" Style="{StaticResource textBoxStyle}" Text="{Binding Path=Temperature, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid> 
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
         <Slider x:Name="slider" Minimum="0" Maximum="1000" Value="{Binding Path=TemperatureInKelvin}" Style="{StaticResource sliderStyle}"/>
     </StackPanel>
 </Window>
