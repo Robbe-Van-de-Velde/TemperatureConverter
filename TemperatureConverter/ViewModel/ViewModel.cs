@@ -58,6 +58,8 @@ namespace ViewModel
         {
             this.parent = parent;
             this.temperatureScale = temperatureScale;
+
+            this.parent.TemperatureInKelvin.PropertyChanged += (sender, args) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Temperature)));
         }
 
         public string Name => temperatureScale.Name;
