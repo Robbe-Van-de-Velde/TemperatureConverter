@@ -49,7 +49,7 @@ namespace Cells
                 this.dependency = dependency;
                 this.transformer = transformer;
 
-                this.dependency.PropertyChanged = (sender, args) => base.Value = transformer(dependency.Value);
+                this.dependency.PropertyChanged += (sender, args) => base.Value = transformer(dependency.Value);
             }
 
             public override OUT Value
