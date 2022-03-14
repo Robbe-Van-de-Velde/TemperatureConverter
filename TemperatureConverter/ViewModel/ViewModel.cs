@@ -52,7 +52,8 @@ namespace ViewModel
             this.temperatureScale = temperatureScale;
 
             this.Temperature = this.parent.TemperatureInKelvin.Derive(kelvin => this.temperatureScale.ConvertFromKelvin(kelvin), other => this.temperatureScale.ConvertToKelvin(other));
-            this.Add = new AddCommand(this.Temperature);
+            this.Add = new AddCommand(this.Temperature, +1);
+            this.Subtract = new AddCommand(this.Temperature, -1);
         }
 
         public string Name => temperatureScale.Name;
@@ -60,14 +61,17 @@ namespace ViewModel
         public Cell<double> Temperature { get; }
 
         public ICommand Add { get; }
+        public ICommand Subtract { get; }
 
         public class AddCommand : ICommand
         {
             private readonly Cell<double> cell;
+            private readonly int delta;
 
-            public AddCommand(Cell<double> cell)
+            public AddCommand(Cell<double> cell, int delta)
             {
                 this.cell = cell;
+                this.delta = delta;
             }
 
             public event EventHandler CanExecuteChanged;
@@ -79,7 +83,7 @@ namespace ViewModel
 
             public void Execute(object parameter)
             {
-                cell.Value = Math.Round(cell.Value + 1);
+                cell.Value = Math.Round(cell.Value + delta);
             }
         }
     }
