@@ -52,20 +52,20 @@ namespace ViewModel
             this.temperatureScale = temperatureScale;
 
             this.Temperature = this.parent.TemperatureInKelvin.Derive(kelvin => this.temperatureScale.ConvertFromKelvin(kelvin), other => this.temperatureScale.ConvertToKelvin(other));
-            this.Increment = new IncrementCommand(this.Temperature);
+            this.Add = new AddCommand(this.Temperature);
         }
 
         public string Name => temperatureScale.Name;
 
         public Cell<double> Temperature { get; }
 
-        public ICommand Increment { get; }
+        public ICommand Add { get; }
 
-        public class IncrementCommand : ICommand
+        public class AddCommand : ICommand
         {
             private readonly Cell<double> cell;
 
-            public IncrementCommand(Cell<double> cell)
+            public AddCommand(Cell<double> cell)
             {
                 this.cell = cell;
             }
