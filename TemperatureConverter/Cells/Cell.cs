@@ -63,7 +63,7 @@ namespace Cells
                 }
                 set
                 {
-                    dependency.Value = untransformer(base.Value);
+                    dependency.Value = untransformer(value);
                 }
             }
         }
